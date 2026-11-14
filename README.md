@@ -1,8 +1,8 @@
-# O Atraso do Verde
+# Pulso Verde
 
 **Quantos dias a vegetação demora para responder à chuva em Mato Grosso do Sul?**
 
-![Animação: o verde chegando a Mato Grosso do Sul nos dias seguintes à chuva](figuras/atraso_do_verde_ms.gif)
+![Animação: o verde chegando a Mato Grosso do Sul nos dias seguintes à chuva](figuras/pulso_verde_ms.gif)
 
 A chuva cai hoje, mas o pasto, a lavoura e o Cerrado não ficam verdes hoje. Este
 projeto mede esse intervalo, pixel a pixel, para o estado inteiro, usando dez anos
@@ -12,7 +12,7 @@ de imagens de satélite processadas no Google Earth Engine.
 
 Para 2015-2024, em Mato Grosso do Sul:
 
-![Mapa do atraso do verde em Mato Grosso do Sul](figuras/atraso_do_verde_ms.png)
+![Mapa do atraso entre a chuva e a resposta da vegetação em Mato Grosso do Sul](figuras/pulso_verde_ms.png)
 
 No mapa, verde claro é resposta rápida e verde escuro é resposta lenta. Na
 animação do topo, cada pixel acende no dia do seu atraso.
@@ -66,7 +66,7 @@ mediana (48 dias) e média de 45,2 dias; está em
 
 ### No Code Editor do Earth Engine
 
-Cole [gee/atraso_do_verde_ms.js](gee/atraso_do_verde_ms.js) em
+Cole [gee/pulso_verde_ms.js](gee/pulso_verde_ms.js) em
 <https://code.earthengine.google.com>, clique em **Run** e inicie a exportação na
 aba **Tasks**. O GeoTIFF sai na pasta `GEE` do Google Drive com duas bandas:
 `lag_dias` e `corr`.
@@ -77,22 +77,22 @@ aba **Tasks**. O GeoTIFF sai na pasta `GEE` do Google Drive com duas bandas:
 pip install earthengine-api
 earthengine authenticate
 export EE_PROJECT=seu-projeto-cloud      # Windows: set EE_PROJECT=seu-projeto-cloud
-python python/atraso_do_verde_ms.py
+python python/pulso_verde_ms.py
 ```
 
 ### Para refazer a figura e a animação
 
 ```bash
 pip install rasterio matplotlib numpy pillow
-python python/figura.py caminho/atraso_do_verde_MS_2015_2024.tif
-python python/animacao.py caminho/atraso_do_verde_MS_2015_2024.tif
+python python/figura.py caminho/pulso_verde_MS_2015_2024.tif
+python python/animacao.py caminho/pulso_verde_MS_2015_2024.tif
 ```
 
 ## Estrutura
 
 ```
-gee/atraso_do_verde_ms.js       script para o Code Editor
-python/atraso_do_verde_ms.py    mesma análise pela API Python
+gee/pulso_verde_ms.js       script para o Code Editor
+python/pulso_verde_ms.py    mesma análise pela API Python
 python/figura.py                gera o mapa a partir do GeoTIFF
 python/animacao.py              gera o GIF animado
 resultados/resumo_1km.json      números do raster de 1 km (os da figura)

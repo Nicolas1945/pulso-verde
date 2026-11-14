@@ -1,11 +1,11 @@
-"""Gera figuras/atraso_do_verde_ms.gif: o verde chegando, dia a dia, apos a chuva.
+"""Gera figuras/pulso_verde_ms.gif: o verde chegando, dia a dia, apos a chuva.
 
 Cada pixel "acende" no dia do seu atraso (a defasagem de maior correlacao
 entre chuva e NDVI). Usa o mesmo GeoTIFF de python/figura.py.
 
 Uso:
     pip install rasterio matplotlib numpy pillow
-    python python/animacao.py caminho/atraso_do_verde_MS_2015_2024.tif
+    python python/animacao.py caminho/pulso_verde_MS_2015_2024.tif
 """
 import io
 import sys
@@ -50,7 +50,7 @@ def quadro(lag, fora, b, alfas, pct, titulo_num, legenda, final=False):
     ax.set_axis_off()
 
     x0 = 0.58
-    fig.text(x0, 0.865, 'O Atraso do Verde', fontsize=33, fontweight='bold',
+    fig.text(x0, 0.865, 'Pulso Verde', fontsize=33, fontweight='bold',
              color=TINTA)
     fig.text(x0, 0.785, 'Quantos dias a vegetação demora para responder\n'
              'à chuva em Mato Grosso do Sul', fontsize=14, color=TINTA2,
@@ -92,7 +92,7 @@ def quadro(lag, fora, b, alfas, pct, titulo_num, legenda, final=False):
     return Image.open(buf).convert('RGB')
 
 
-def main(tif, saida='figuras/atraso_do_verde_ms.gif'):
+def main(tif, saida='figuras/pulso_verde_ms.gif'):
     lag, corr, fora, b = ler_raster(tif)
     validos = lag[~fora]
     pct = np.array([100.0 * (validos == v).sum() / validos.size for v in LAGS])

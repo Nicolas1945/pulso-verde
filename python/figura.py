@@ -1,8 +1,8 @@
-"""Gera figuras/atraso_do_verde_ms.png a partir do GeoTIFF exportado pelo GEE.
+"""Gera figuras/pulso_verde_ms.png a partir do GeoTIFF exportado pelo GEE.
 
 Uso:
     pip install rasterio matplotlib numpy
-    python python/figura.py caminho/atraso_do_verde_MS_2015_2024.tif
+    python python/figura.py caminho/pulso_verde_MS_2015_2024.tif
 """
 import json
 import sys
@@ -37,7 +37,7 @@ def ler_raster(tif):
     return lag, corr, fora, b
 
 
-def main(tif, saida='figuras/atraso_do_verde_ms.png'):
+def main(tif, saida='figuras/pulso_verde_ms.png'):
     lag, corr, fora, b = ler_raster(tif)
     lag_m = np.ma.masked_where(fora, lag)
     validos = lag[~fora]
@@ -70,7 +70,7 @@ def main(tif, saida='figuras/atraso_do_verde_ms.png'):
 
     # ---------------- Texto ----------------
     x0 = 0.58
-    fig.text(x0, 0.875, 'O Atraso do Verde', fontsize=44, fontweight='bold',
+    fig.text(x0, 0.875, 'Pulso Verde', fontsize=44, fontweight='bold',
              color=TINTA)
     fig.text(x0, 0.80, 'Quantos dias a vegetação demora para responder\n'
              'à chuva em Mato Grosso do Sul', fontsize=19, color=TINTA2,

@@ -1,5 +1,5 @@
 // =====================================================================
-// O ATRASO DO VERDE - Mato Grosso do Sul
+// PULSO VERDE - Mato Grosso do Sul
 // Quantos dias a vegetacao (NDVI) demora para responder a chuva?
 // Dados: CHIRPS Daily (chuva) + MODIS MOD13Q1 v061 (NDVI 16 dias, 250 m)
 // Metodo: correlacao de Pearson por pixel entre NDVI e chuva acumulada
@@ -98,9 +98,9 @@ print(ui.Chart.image.histogram({
 // ---------------- Exportacao ----------------
 Export.image.toDrive({
   image: melhor.select(['lag_dias', 'corr']),
-  description: 'atraso_do_verde_MS_2015_2024',
+  description: 'pulso_verde_MS_2015_2024',
   folder: 'GEE',
-  fileNamePrefix: 'atraso_do_verde_MS_2015_2024',
+  fileNamePrefix: 'pulso_verde_MS_2015_2024',
   region: ms.geometry(),
   scale: ESCALA_EXPORT,
   crs: 'EPSG:4326',

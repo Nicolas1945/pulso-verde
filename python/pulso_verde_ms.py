@@ -1,13 +1,13 @@
-"""O Atraso do Verde - Mato Grosso do Sul.
+"""Pulso Verde - Mato Grosso do Sul.
 
-Versao em Python (API do Earth Engine) do script gee/atraso_do_verde_ms.js.
+Versao em Python (API do Earth Engine) do script gee/pulso_verde_ms.js.
 
 Uso:
     pip install earthengine-api
     earthengine authenticate
     set EE_PROJECT=seu-projeto-cloud      (Linux/macOS: export EE_PROJECT=...)
-    python python/atraso_do_verde_ms.py            # estatisticas + exportacao
-    python python/atraso_do_verde_ms.py --sem-export
+    python python/pulso_verde_ms.py            # estatisticas + exportacao
+    python python/pulso_verde_ms.py --sem-export
 """
 import json
 import os
@@ -75,9 +75,9 @@ def main():
     if '--sem-export' not in sys.argv:
         task = ee.batch.Export.image.toDrive(
             image=melhor.select(['lag_dias', 'corr']),
-            description='atraso_do_verde_MS_2015_2024',
+            description='pulso_verde_MS_2015_2024',
             folder='GEE',
-            fileNamePrefix='atraso_do_verde_MS_2015_2024',
+            fileNamePrefix='pulso_verde_MS_2015_2024',
             region=ms.geometry(),
             scale=ESCALA_EXPORT,
             crs='EPSG:4326',
