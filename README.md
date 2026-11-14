@@ -2,7 +2,7 @@
 
 **Quantos dias a vegetação demora para responder à chuva em Mato Grosso do Sul?**
 
-![Mapa do atraso do verde em Mato Grosso do Sul](figuras/atraso_do_verde_ms.png)
+![Animação: o verde chegando a Mato Grosso do Sul nos dias seguintes à chuva](figuras/atraso_do_verde_ms.gif)
 
 A chuva cai hoje, mas o pasto, a lavoura e o Cerrado não ficam verdes hoje. Este
 projeto mede esse intervalo, pixel a pixel, para o estado inteiro, usando dez anos
@@ -11,6 +11,11 @@ de imagens de satélite processadas no Google Earth Engine.
 ## Resultado
 
 Para 2015-2024, em Mato Grosso do Sul:
+
+![Mapa do atraso do verde em Mato Grosso do Sul](figuras/atraso_do_verde_ms.png)
+
+No mapa, verde claro é resposta rápida e verde escuro é resposta lenta. Na
+animação do topo, cada pixel acende no dia do seu atraso.
 
 - **Atraso mediano: 48 dias.** Média: 44,6 dias.
 - Em 68% do estado, o atraso fica entre 32 e 48 dias.
@@ -75,11 +80,12 @@ export EE_PROJECT=seu-projeto-cloud      # Windows: set EE_PROJECT=seu-projeto-c
 python python/atraso_do_verde_ms.py
 ```
 
-### Para refazer a figura
+### Para refazer a figura e a animação
 
 ```bash
-pip install rasterio matplotlib numpy
+pip install rasterio matplotlib numpy pillow
 python python/figura.py caminho/atraso_do_verde_MS_2015_2024.tif
+python python/animacao.py caminho/atraso_do_verde_MS_2015_2024.tif
 ```
 
 ## Estrutura
@@ -88,9 +94,10 @@ python python/figura.py caminho/atraso_do_verde_MS_2015_2024.tif
 gee/atraso_do_verde_ms.js       script para o Code Editor
 python/atraso_do_verde_ms.py    mesma análise pela API Python
 python/figura.py                gera o mapa a partir do GeoTIFF
+python/animacao.py              gera o GIF animado
 resultados/resumo_1km.json      números do raster de 1 km (os da figura)
 resultados/estatisticas.json    conferência no Earth Engine em grade de 5 km
-figuras/                        figura do README
+figuras/                        figura e animação do README
 ```
 
 ## Dados

@@ -16,24 +16,29 @@ from matplotlib.colors import BoundaryNorm, ListedColormap
 
 LAGS = [0, 16, 32, 48, 64, 80, 96]
 # Rampa sequencial de um unico matiz (claro = resposta rapida, escuro = lenta)
-RAMPA = ['#cde2fb', '#9ec5f4', '#6da7ec', '#3987e5', '#256abf', '#184f95', '#0d366b']
+RAMPA = ['#d5efcf', '#b0dfa6', '#86cb7c', '#57b356', '#2f9638', '#167527', '#06521a']
+SECO = '#e8dcc0'    # cor de 'ainda sem resposta', usada na animacao
 SUPERFICIE = '#fcfcfb'
 TINTA = '#0b0b0b'
 TINTA2 = '#52514e'
 MUDO = '#898781'
 GRADE = '#e1e0d9'
-BARRA = '#2a78d6'
 
 plt.rcParams['font.family'] = ['Segoe UI', 'DejaVu Sans', 'sans-serif']
 
 
-def main(tif, saida='figuras/atraso_do_verde_ms.png'):
+def ler_raster(tif):
     with rasterio.open(tif) as src:
         lag = src.read(1).astype('float32')
         corr = src.read(2).astype('float32')
         b = src.bounds
     # Fora do limite de MS o GeoTIFF vem com 0 nas duas bandas (ou NaN)
     fora = ~np.isfinite(corr) | ~np.isfinite(lag) | ((corr == 0) & (lag == 0))
+    return lag, corr, fora, b
+
+
+def main(tif, saida='figuras/atraso_do_verde_ms.png'):
+    lag, corr, fora, b = ler_raster(tif)
     lag_m = np.ma.masked_where(fora, lag)
     validos = lag[~fora]
 
